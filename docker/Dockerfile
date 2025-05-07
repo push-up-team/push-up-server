@@ -4,7 +4,7 @@ FROM gradle:8.5-jdk21-alpine AS builder
 WORKDIR /app
 
 # 의존성 캐시 최적화
-COPY build.gradle.kts settings.gradle.kts /app/
+COPY build.gradle settings.gradle /app/
 RUN gradle dependencies --no-daemon || true
 
 # 전체 소스 복사
