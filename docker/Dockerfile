@@ -1,17 +1,22 @@
 # 1단계: 빌드 스테이지
-FROM amazoncorretto:21-alpine AS builder
+FROM gradle:8.7-jdk21-alpine AS builder
 
 WORKDIR /app
 
+# Gradle Wrapper 복사
+COPY gradlew gradlew.bat /app/
+COPY gradle /app/gradle
+RUN chmod +x gradlew
+
 # 의존성 캐시 최적화
 COPY build.gradle settings.gradle /app/
-RUN gradle dependencies --no-daemon || true
+RUN ./gradlew dependencies --no-daemon || true
 
 # 전체 소스 복사
 COPY . /app
 
 # 빌드
-RUN gradle bootJar --no-daemon
+RUN ./gradlew bootJar --no-daemon
 
 # 2단계: 런타임 스테이지
 FROM amazoncorretto:21-alpine
