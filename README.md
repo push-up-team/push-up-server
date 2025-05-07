@@ -65,4 +65,4 @@
 
 ## 📃 라이선스
 
-MIT License
+[MIT License](https://github.com/push-up-team/push-up-server/tree/main?tab=MIT-1-ov-file)
