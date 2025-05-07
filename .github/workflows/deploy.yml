@@ -33,6 +33,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
                 ${{ secrets.DOCKER_USERNAME }}/push-up-server:latest
                 ${{ secrets.DOCKER_USERNAME }}/push-up-server:${{ github.sha }}
